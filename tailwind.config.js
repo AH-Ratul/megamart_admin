@@ -59,6 +59,7 @@ module.exports = {
       fontFamily: {
         OpenSans: ["Open Sans", "sans-serif"],
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        LeagueGothic: ["League Gothic", 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {
