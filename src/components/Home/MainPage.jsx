@@ -42,7 +42,7 @@ const MainPage = () => {
           </DropdownMenu>
         </div>
       </header>
-      <div className="flex items-center gap-4 ml-5  mt-[15px]">
+      <div className="flex items-center gap-5 ml-5  mt-[15px]">
         <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 2xl:w-80 h-36 2xl:h-40 p-4 flex flex-col">
           <p className="text-lg 2xl:text-xl text-muted-foreground">
             Total Revenue
