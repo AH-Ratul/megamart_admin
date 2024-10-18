@@ -47,27 +47,38 @@ const MainPage = () => {
           <p className="text-lg 2xl:text-xl text-muted-foreground">
             Total Revenue
           </p>
-          <span className="text-2xl 2xl:text-3xl font-bold my-2">$ 554545</span>
-          <span className="text-xs 2xl:text-sm tracking-wider text-muted-foreground">
-            +12% from last week
+          <span className="text-2xl 2xl:text-3xl font-bold my-2">
+            &#2547; 554545
+          </span>
+          <span className="text-xs 2xl:text-sm tracking-wider text-white bg-black w-fit rounded-full px-2">
+            +12%
           </span>
         </div>
         <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 2xl:w-80 h-36 2xl:h-40 p-4 flex flex-col">
           <p className="text-lg 2xl:text-xl text-muted-foreground">
             Total Orders
           </p>
-          <span className="text-2xl 2xl:text-3xl font-bold my-2">$ 554</span>
-          <span className="text-xs 2xl:text-sm tracking-wider text-muted-foreground">
-            +10% from last week
+          <span className="text-2xl 2xl:text-3xl font-bold my-2">554</span>
+          <span className="text-xs 2xl:text-sm tracking-wider text-white bg-black w-fit rounded-full px-2">
+            +10%
           </span>
         </div>
         <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 2xl:w-80 h-36 2xl:h-40 p-4 flex flex-col">
           <p className="text-lg 2xl:text-xl text-muted-foreground">
             Total Users
           </p>
-          <span className="text-2xl 2xl:text-3xl font-bold my-2">$ 5</span>
-          <span className="text-xs 2xl:text-sm tracking-wider text-muted-foreground">
-            +2% from last week
+          <span className="text-2xl 2xl:text-3xl font-bold my-2">53</span>
+          <span className="text-xs 2xl:text-sm tracking-wider text-white bg-black w-fit rounded-full px-2">
+            +2%
+          </span>
+        </div>
+        <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 2xl:w-80 h-36 2xl:h-40 p-4 flex flex-col">
+          <p className="text-lg 2xl:text-xl text-muted-foreground">
+            Total Sales
+          </p>
+          <span className="text-2xl 2xl:text-3xl font-bold my-2">329</span>
+          <span className="text-xs 2xl:text-sm tracking-wider text-white bg-black w-fit rounded-full px-2">
+            +8%
           </span>
         </div>
       </div>
