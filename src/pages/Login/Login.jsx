@@ -17,8 +17,8 @@ const Login = () => {
   };
 
   return (
-    <main className="bg-raisinBlack text-white/70 font-OpenSans min-h-screen flex flex-col justify-center items-center">
-      <div className="w-full max-w-sm p-6 border-2 border-white/15 rounded-lg">
+    <main className="bg-accent font-OpenSans min-h-screen flex flex-col justify-center items-center">
+      <div className="w-full max-w-sm p-6 border shadow-sm bg-white rounded-lg">
         {/* header content */}
         <div>
           <h2 className="text-xl mb-2  tracking-wider">
@@ -37,7 +37,7 @@ const Login = () => {
                 id="email"
                 name="email"
                 placeholder="example@email.com"
-                className="mt-2 w-full block ps-4 py-2 text-sm bg-raisinBlack border border-white/15 rounded"
+                className="mt-2 w-full block ps-4 py-2 text-sm border rounded"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -57,14 +57,14 @@ const Login = () => {
                 <label htmlFor="password" className="text-sm ">
                   Password
                 </label>
-                <Link className="text-sm underline">Forget Your Password?</Link>
+                <Link className="text-sm underline hover:text-red-500">Forget Your Password?</Link>
               </div>
               <input
                 type="password"
                 id="password"
                 name="password"
                 placeholder="xxxxxxx"
-                className="mt-1 w-full block ps-4 py-2 text-sm bg-raisinBlack border border-white/15 rounded"
+                className="mt-1 w-full block ps-4 py-2 text-sm border rounded"
                 {...register("password", {
                   required: "Password is required",
                   minLength: 6,
@@ -79,7 +79,7 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className="w-full text-sm  bg-prime hover:opacity-85 hover:transform hover:transition hover:ease-in-out hover:duration-300 text-black mt-4 rounded-md py-[10px] font-medium"
+              className="w-full text-sm tracking-wide bg-black/70 hover:opacity-95 hover:transform hover:transition hover:ease-in-out hover:duration-300 text-white mt-4 rounded-md py-[10px] font-medium"
             >
               Login
             </button>
@@ -88,7 +88,7 @@ const Login = () => {
 
         <p className="text-sm text-center mt-7">
           Don't have an account?{" "}
-          <Link to="/signup" className="underline text-prime  tracking-wide">
+          <Link to="/signup" className="underline text-prime tracking-wider">
             Signup
           </Link>
         </p>
