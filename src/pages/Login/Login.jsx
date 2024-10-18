@@ -1,6 +1,9 @@
+import { useLoginMutation } from "@/redux/api/user_api";
+import { setUser } from "@/redux/slice/authSlice";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -10,10 +13,32 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const [loginUser, { isLoading }] = useLoginMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const to = location?.state?.pahtname || "/";
+
+  const onSubmit = async (data) => {
     console.log(data);
 
-    reset();
+    try {
+      const result = await loginUser(data).unwrap();
+      //console.log(result.data);
+
+      const user = result.data.user;
+      console.log(user);
+
+      if (user?.role === "admin") {
+        dispatch(setUser(user));
+        navigate("/");
+      }
+
+      reset();
+    } catch (error) {
+      console.log("login Err ->", error);
+    }
   };
 
   return (
@@ -21,9 +46,7 @@ const Login = () => {
       <div className="w-full max-w-sm p-6 border shadow-sm bg-white rounded-lg">
         {/* header content */}
         <div>
-          <h2 className="text-xl mb-2  tracking-wider">
-            Admin Login
-          </h2>
+          <h2 className="text-xl mb-2  tracking-wider">Admin Login</h2>
         </div>
         {/* main content */}
         <div className="mt-6">
@@ -57,7 +80,9 @@ const Login = () => {
                 <label htmlFor="password" className="text-sm ">
                   Password
                 </label>
-                <Link className="text-sm underline hover:text-red-500">Forget Your Password?</Link>
+                <Link className="text-sm underline hover:text-red-500">
+                  Forget Your Password?
+                </Link>
               </div>
               <input
                 type="password"
@@ -81,7 +106,7 @@ const Login = () => {
               type="submit"
               className="w-full text-sm tracking-wide bg-black/70 hover:opacity-95 hover:transform hover:transition hover:ease-in-out hover:duration-300 text-white mt-4 rounded-md py-[10px] font-medium"
             >
-              Login
+              {isLoading ? "Loading..." : "Login"}
             </button>
           </form>
         </div>
