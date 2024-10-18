@@ -27,10 +27,12 @@ const MainPage = () => {
             </div>
           </form>
         </div>
-        <div className="">
+        <div>
           <DropdownMenu>
-            <DropdownMenuTrigger className="border bg-white rounded-full p-2 text-xl">{user}</DropdownMenuTrigger>
-            <DropdownMenuContent cls>
+            <DropdownMenuTrigger className="border bg-white rounded-full p-2 2xl:p-2.5 text-xl 2xl:text-2xl">
+              {user}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
@@ -40,20 +42,34 @@ const MainPage = () => {
           </DropdownMenu>
         </div>
       </header>
-      <div className="bg-[#12141D flex items-center gap-9 ml-5  mt-[15px]">
-        <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 h-28 flex flex-col justify-center items-center text-2xl">
-          <p>Total Revenue</p>
-          <span>$55454543</span>
+      <div className="flex items-center gap-4 ml-5  mt-[15px]">
+        <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 2xl:w-80 h-36 2xl:h-40 p-4 flex flex-col">
+          <p className="text-lg 2xl:text-xl text-muted-foreground">
+            Total Revenue
+          </p>
+          <span className="text-2xl 2xl:text-3xl font-bold my-2">$ 554545</span>
+          <span className="text-xs 2xl:text-sm tracking-wider text-muted-foreground">
+            +12% from last week
+          </span>
         </div>
-        <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 h-28 flex flex-col justify-center items-center text-2xl">
-          <p>Total Revenue</p>
-          <span>$55454543</span>
+        <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 2xl:w-80 h-36 2xl:h-40 p-4 flex flex-col">
+          <p className="text-lg 2xl:text-xl text-muted-foreground">
+            Total Orders
+          </p>
+          <span className="text-2xl 2xl:text-3xl font-bold my-2">$ 554</span>
+          <span className="text-xs 2xl:text-sm tracking-wider text-muted-foreground">
+            +10% from last week
+          </span>
         </div>
-        <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 h-28 flex flex-col justify-center items-center text-2xl">
-          <p>Total Revenue</p>
-          <span>$55454543</span>
+        <div className="rounded-xl border shadow-sm backdrop-blur-lg bg-white w-64 2xl:w-80 h-36 2xl:h-40 p-4 flex flex-col">
+          <p className="text-lg 2xl:text-xl text-muted-foreground">
+            Total Users
+          </p>
+          <span className="text-2xl 2xl:text-3xl font-bold my-2">$ 5</span>
+          <span className="text-xs 2xl:text-sm tracking-wider text-muted-foreground">
+            +2% from last week
+          </span>
         </div>
-        
       </div>
     </main>
   );
