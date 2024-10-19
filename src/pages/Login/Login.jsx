@@ -3,7 +3,7 @@ import { setUser } from "@/redux/slice/authSlice";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -16,22 +16,17 @@ const Login = () => {
   const [loginUser, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const to = location?.state?.pahtname || "/";
 
   const onSubmit = async (data) => {
     console.log(data);
 
     try {
-      const result = await loginUser(data).unwrap();
-      //console.log(result.data);
+      const result = await loginUser({ ...data, isAdmin: true }).unwrap();
 
       const user = result.data.user;
-      console.log(user);
 
-      if (user?.role === "admin") {
-        dispatch(setUser(user));
+      dispatch(setUser(user));
+      if (user.role === "admin") {
         navigate("/");
       }
 
