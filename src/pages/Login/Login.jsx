@@ -18,8 +18,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     try {
       const result = await loginUser({ ...data, isAdmin: true }).unwrap();
 
