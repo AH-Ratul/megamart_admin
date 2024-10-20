@@ -9,9 +9,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { useLogOutMutation } from "@/redux/api/user_api";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "@/redux/slice/authSlice";
 
 const MainPage = () => {
   const { user } = allIcons;
+  const [logOut] = useLogOutMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogOut = async () => {
+    await logOut();
+    dispatch(logout());
+    navigate("/login");
+  };
+
   return (
     <main>
       <header className="flex justify-between items-center py-2 px-5 ">
@@ -37,7 +51,9 @@ const MainPage = () => {
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem>
+                <button onClick={handleLogOut}>Logout</button>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
