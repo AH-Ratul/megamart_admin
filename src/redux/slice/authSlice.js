@@ -4,6 +4,7 @@ import { userApi } from "../api/user_api";
 const initialState = {
   user: "",
   isAuthenticated: false,
+  loading: true,
 };
 
 const authSlice = createSlice({
@@ -13,10 +14,12 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
       state.isAuthenticated = true;
+      state.loading = false;
     },
     logout: (state) => {
       state.user = "";
       state.isAuthenticated = false;
+      state.loading = false;
     },
   },
   extraReducers: (builder) => {
@@ -24,10 +27,12 @@ const authSlice = createSlice({
       .addMatcher(userApi.endpoints.getMe.matchFulfilled, (state, action) => {
         state.user = action.payload;
         state.isAuthenticated = true;
+        state.loading = false;
       })
       .addMatcher(userApi.endpoints.getMe.matchRejected, (state, aciton) => {
         state.user = "";
         state.isAuthenticated = false;
+        state.loading = false;
       });
   },
 });
