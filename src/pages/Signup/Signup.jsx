@@ -1,6 +1,8 @@
+import Loader from "@/components/Shared/Loader/Loader";
 import { useCreateUserMutation } from "@/redux/api/user_api";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
@@ -12,6 +14,7 @@ const Signup = () => {
   } = useForm();
 
   const [postData, { isError, isLoading, error }] = useCreateUserMutation();
+  const { loading } = useSelector((state) => state.auth);
 
   const onSubmit = async (data) => {
     const userData = {
@@ -23,12 +26,8 @@ const Signup = () => {
       passwordConfirm: data.passwordConfirm,
     };
 
-    console.log("user", userData)
-
     try {
       const post = await postData(userData).unwrap();
-
-      console.log(post);
 
       reset();
     } catch (error) {
@@ -156,7 +155,11 @@ const Signup = () => {
               type="submit"
               className="w-full text-sm tracking-wide bg-black/70 hover:opacity-95 hover:transform hover:transition hover:ease-in-out hover:duration-300 text-white mt-4 rounded-md py-[10px] font-medium"
             >
-              {isLoading ? "Loading..." : "Signup"}
+              {isLoading || loading ? (
+                <Loader color="white" size="20px" />
+              ) : (
+                "Signup"
+              )}
             </button>
           </form>
         </div>
