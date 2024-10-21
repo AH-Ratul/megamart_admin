@@ -1,8 +1,9 @@
+import Loader from "@/components/Shared/Loader/Loader";
 import { useLoginMutation } from "@/redux/api/user_api";
 import { setUser } from "@/redux/slice/authSlice";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -14,6 +15,7 @@ const Login = () => {
   } = useForm();
 
   const [loginUser, { isLoading }] = useLoginMutation();
+  const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -99,7 +101,11 @@ const Login = () => {
               type="submit"
               className="w-full text-sm tracking-wide bg-black/70 hover:opacity-95 hover:transform hover:transition hover:ease-in-out hover:duration-300 text-white mt-4 rounded-md py-[10px] font-medium"
             >
-              {isLoading ? "Loading..." : "Login"}
+              {isLoading || loading ? (
+                <Loader color="white" size="20px" />
+              ) : (
+                "Login"
+              )}
             </button>
           </form>
         </div>
