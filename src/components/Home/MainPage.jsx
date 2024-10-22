@@ -98,6 +98,7 @@ const MainPage = () => {
           </span>
         </div>
       </div>
+      <div></div>
     </main>
   );
 };
