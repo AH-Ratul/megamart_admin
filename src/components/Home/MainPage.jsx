@@ -11,7 +11,7 @@ import {
 } from "../ui/dropdown-menu";
 import { useLogOutMutation } from "@/redux/api/user_api";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { logout } from "@/redux/slice/authSlice";
 
 const MainPage = () => {
@@ -51,9 +51,9 @@ const MainPage = () => {
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>
-                <button onClick={handleLogOut}>Logout</button>
-              </DropdownMenuItem>
+              <button onClick={handleLogOut} className="w-full">
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </button>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -98,7 +98,9 @@ const MainPage = () => {
           </span>
         </div>
       </div>
-      <div></div>
+      <div>
+        <Outlet />
+      </div>
     </main>
   );
 };
