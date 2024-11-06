@@ -3,6 +3,8 @@ import Main from "../Layout/Main";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import AddProduct from "@/pages/AddProduct/AddProduct";
+import MainPage from "@/components/Home/MainPage";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,16 @@ const router = createBrowserRouter([
         <Main />
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: "/",
+        element: <MainPage />,
+      },
+      {
+        path: "addProduct",
+        element: <AddProduct />,
+      },
+    ],
   },
 ]);
 
