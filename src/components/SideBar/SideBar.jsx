@@ -14,11 +14,17 @@ const SideBar = () => {
 
       {/* Links */}
       <div className="flex flex-col justify-start mx-3 text-base font-medium mt-8">
-        <Link className="ps-2 py-2 w-full hover:text-prime flex items-center gap-1 hover:bg-accent hover:bg-opacity-5 hover:rounded-sm">
+        <Link
+          to="/"
+          className="ps-2 py-2 w-full hover:text-prime flex items-center gap-1 hover:bg-accent hover:bg-opacity-5 hover:rounded-sm"
+        >
           <span className="text-lg 2xl:text-xl">{dashboard}</span>
           <span className="2xl:text-lg">Dashboard</span>
         </Link>
-        <Link className="ps-2 py-2 w-full hover:text-prime flex items-center gap-1 hover:bg-accent hover:bg-opacity-5 hover:rounded-sm">
+        <Link
+          to="/addProduct"
+          className="ps-2 py-2 w-full hover:text-prime flex items-center gap-1 hover:bg-accent hover:bg-opacity-5 hover:rounded-sm"
+        >
           <span className="text-lg 2xl:text-2xl">{add}</span>
           <span className="2xl:text-lg">Add Product</span>
         </Link>
