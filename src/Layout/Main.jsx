@@ -1,6 +1,7 @@
 import React from "react";
 import SideBar from "../components/SideBar/SideBar";
-import MainPage from "../components/Home/MainPage";
+import { Outlet } from "react-router-dom";
+import Header from "@/components/Shared/Header/Header";
 
 const Main = () => {
   return (
@@ -10,7 +11,8 @@ const Main = () => {
       </div>
 
       <div className="ml-60 2xl:ml-64 w-full overflow-y-auto overflow-x-hidden  h-screen">
-        <MainPage />
+        <Header />
+        <Outlet />
       </div>
     </main>
   );
