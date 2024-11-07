@@ -1,3 +1,11 @@
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -12,41 +20,58 @@ const AddProduct = () => {
   const handleAddProduct = () => {};
   return (
     <div className="flex justify-center items-center ml-5 mr-5 mt-[10px]">
-      <div className="w-full border bg-white rounded-sm p-8  h-dvh">
+      <div className="w-full border bg-white rounded-sm p-8  h-dv">
         <h1 className="text-3xl font-bold text-prime">Add Product</h1>
         {/* Input Fields */}
         <form action="" className="mt-5">
           <div className="flex justify-between items-center gap-12">
-            <input
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Electrical & Applience">
+                  Electrical & Applience
+                </SelectItem>
+                <SelectItem value="Mobile & Accessories">
+                  Mobile & Accessories
+                </SelectItem>
+                <SelectItem value="Home Decor & Life Style">
+                  Home Decor & Life Style
+                </SelectItem>
+                <SelectItem value="Women's Fashion">Women's Fashion</SelectItem>
+                <SelectItem value="Men's Fashion">Men's Fashion</SelectItem>
+                <SelectItem value="Computer & Accessories">
+                  Computer & Accessories
+                </SelectItem>
+                <SelectItem value="TV & Home Applience">
+                  TV & Home Applience
+                </SelectItem>
+                <SelectItem value="Gift's Items">Gift's Items</SelectItem>
+                <SelectItem value="Grocery">Grocery</SelectItem>
+              </SelectContent>
+            </Select>
+            {/* SUB CATEGORY */}
+            <Input
               type="text"
-              id="productId"
-              name="productId"
-              placeholder="Product ID"
-              className="border focus:border-prime w-full bg-accent ps-2 py-2 outline-none rounded mt-1"
+              id="subCategory"
+              name="subCategory"
+              placeholder="Sub Category"
             />
-            <input
+          </div>
+          {/* PRODUCT NAME & CODE */}
+          <div className="flex justify-between items-center gap-12 mt-5">
+            <Input
               type="text"
               id="productName"
               name="productName"
               placeholder="Product Name"
-              className="border focus:border-prime w-full bg-accent ps-2 py-2 outline-none rounded mt-1"
             />
-          </div>
-          {/* ** */}
-          <div className="flex justify-between items-center gap-12 mt-5">
-            <input
+            <Input
               type="text"
-              id="brand"
-              name="brand"
-              placeholder="Brand"
-              className="border focus:border-prime w-full bg-accent ps-2 py-2 outline-none rounded mt-1"
-            />
-            <input
-              type="text"
-              id="category"
-              name="category"
-              placeholder="Category"
-              className="border focus:border-prime w-full bg-accent ps-2 py-2 outline-none rounded mt-1"
+              id="productCode"
+              name="productCode"
+              placeholder="Product Code"
             />
           </div>
         </form>
