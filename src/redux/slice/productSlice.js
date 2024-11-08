@@ -1,5 +1,5 @@
-const { createSlice } = require("@reduxjs/toolkit");
-const { productsApi } = require("../api/product_api");
+import { createSlice } from "@reduxjs/toolkit";
+import { productsApi } from "../api/product_api";
 
 const initialState = {
   products: "",
