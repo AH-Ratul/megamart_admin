@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_baseurl}/api/v1`,
-    credentials: true,
+    baseUrl: `${import.meta.env.VITE_baseurl}api/v1`,
+    
   }),
   tagTypes: ["products"],
   endpoints: (builder) => ({
@@ -21,3 +21,5 @@ export const productsApi = createApi({
     }),
   }),
 });
+
+export const { useAddProductsMutation, useGetProductsQuery } = productsApi;
