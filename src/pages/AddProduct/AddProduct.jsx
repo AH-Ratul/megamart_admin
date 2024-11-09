@@ -10,6 +10,10 @@ import { Textarea } from "@/components/ui/textarea";
 import React, { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import img from "../../../public/photo.png";
+import axios from "axios";
+import { useAddProductsMutation } from "@/redux/api/product_api";
+import { useSelector } from "react-redux";
+import Loader from "@/components/Shared/Loader/Loader";
 
 const AddProduct = () => {
   const {
@@ -37,10 +41,40 @@ const AddProduct = () => {
     setValue("productImage", file);
   };
 
-  const handleAddProduct = (data) => {
-    console.log(data);
-    reset();
-    setImage("");
+  // handle add product functionality
+  const [addProducts, { isLoading, isError }] = useAddProductsMutation();
+  const { loading } = useSelector((state) => state.products);
+
+  const handleAddProduct = async (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("upload_preset", "product_images");
+      formData.append("cloud_name", `${import.meta.env.VITE_cloud_name}`);
+
+      const imgResponse = await axios.post(
+        `${import.meta.env.VITE_CLOUD_API}`,
+        formData
+      );
+
+      if (imgResponse.status === 200) {
+        const imgURL = imgResponse.data.url;
+
+        const dataToSave = {
+          ...data,
+          productImages: [imgURL],
+        };
+
+        const addProduct = await addProducts(dataToSave).unwrap();
+        console.log(addProduct);
+
+        // clear fields
+        reset();
+        setImage("");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="flex justify-center items-center ml-5 mr-5 mt-[10px] mb-5">
@@ -196,10 +230,10 @@ const AddProduct = () => {
           <div className="flex justify-center items-center mt-5">
             {/* Custom File Input */}
             <div
-              name="productImage"
+              name="productImages"
               onClick={handleImageClick}
-              {...register("productImage")}
-              className="flex flex-col items-center border-2 border-dashed p-5 h-48"
+              {...register("productImages")}
+              className="flex flex-col items-center border-2 border-dashed p-5 h-48 cursor-pointer"
             >
               {image ? (
                 <img src={URL.createObjectURL(image)} className="w-fit h-32" />
@@ -224,7 +258,11 @@ const AddProduct = () => {
               type="submit"
               className="bg-accent-foreground hover:opacity-90 text-white rounded-sm  py-2 w-1/2"
             >
-              Add Product
+              {isLoading || loading ? (
+                <Loader color="white" size="22px" />
+              ) : (
+                "Add Product"
+              )}
             </button>
           </div>
         </form>
