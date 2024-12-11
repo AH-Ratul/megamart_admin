@@ -28,7 +28,10 @@ const SideBar = () => {
           <span className="text-lg 2xl:text-2xl">{add}</span>
           <span className="2xl:text-lg">Add Product</span>
         </Link>
-        <Link className="ps-2 py-2 w-full hover:text-prime flex items-center gap-1 hover:bg-accent hover:bg-opacity-5 hover:rounded-sm">
+        <Link
+          to="/manageProducts"
+          className="ps-2 py-2 w-full hover:text-prime flex items-center gap-1 hover:bg-accent hover:bg-opacity-5 hover:rounded-sm"
+        >
           <span className="text-lg 2xl:text-2xl">{product}</span>
           <span className="2xl:text-lg">Manage Products</span>
         </Link>
