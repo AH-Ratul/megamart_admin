@@ -7,10 +7,25 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import allIcons from "@/data/all-icons";
+import { useGetProductsQuery } from "@/redux/api/product_api";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const ManageProducts = () => {
   const { del, edit } = allIcons;
+
+  const { data: productData, isLoading, error } = useGetProductsQuery();
+  const { loading } = useSelector((state) => state.products);
+  const products = productData?.data || [];
+
+  if (isLoading && loading) {
+    return <h1>Loading</h1>;
+  }
+
+  if (error) {
+    return <p>Error loading products, please try again later...</p>;
+  }
+
   return (
     <div className="flex justify-center items-center ml-5 mr-5 mt-[10px]">
       <div className="w-full border bg-white p-8 rounded-sm">
@@ -28,44 +43,41 @@ const ManageProducts = () => {
             </TableRow>
           </TableHeader>
           <TableBody className="2xl:text-base">
-            <TableRow>
-              <TableCell className="font-bold">#SH33</TableCell>
-              <TableCell>Hp i5 8gen Professional laptop</TableCell>
-              <TableCell>90,000</TableCell>
-              <TableCell className="text-center">9</TableCell>
-              <TableCell>
-                <span className="bg-lime-500 text-white p-1 rounded-sm text-xs">
-                  In Stock
-                </span>
-              </TableCell>
-              <TableCell className="flex items-center gap-2">
-                <span className="bg-sky-500 text-white p-1 rounded-sm">
-                  {edit}
-                </span>
-                <button className="bg-red-600 text-white p-1 rounded-sm">
-                  {del}
-                </button>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-medium">#SH33</TableCell>
-              <TableCell>Hp i5 8gen Professional laptop</TableCell>
-              <TableCell>90,000</TableCell>
-              <TableCell className="text-center">9</TableCell>
-              <TableCell>
-                <span className="bg-red-600 text-white p-1 rounded-sm text-xs">
-                  Out of Stock
-                </span>
-              </TableCell>
-              <TableCell className="flex items-center gap-2">
-                <span className="bg-sky-500 text-white p-1 rounded-sm">
-                  {edit}
-                </span>
-                <button className="bg-red-600 text-white p-1 rounded-sm">
-                  {del}
-                </button>
-              </TableCell>
-            </TableRow>
+            {products?.length > 0 ? (
+              products.map((product) => (
+                <TableRow key={product._id}>
+                  <TableCell className="font-bold">
+                    {product.productCode}
+                  </TableCell>
+                  <TableCell>{product.productName}</TableCell>
+                  <TableCell>{product.price}</TableCell>
+                  <TableCell className="text-center">
+                    {product.quantity}
+                  </TableCell>
+                  <TableCell>
+                    <span
+                      className={`${
+                        product.availability === "In Stock"
+                          ? "bg-lime-500"
+                          : "bg-red-500"
+                      } text-white p-1 rounded-sm text-xs`}
+                    >
+                      {product.availability}
+                    </span>
+                  </TableCell>
+                  <TableCell className="flex items-center gap-2">
+                    <span className="bg-sky-500 text-white p-1 rounded-sm">
+                      {edit}
+                    </span>
+                    <button className="bg-red-600 text-white p-1 rounded-sm">
+                      {del}
+                    </button>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <p>No Products found</p>
+            )}
           </TableBody>
         </Table>
       </div>
