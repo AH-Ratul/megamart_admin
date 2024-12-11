@@ -43,6 +43,12 @@ const productsSlice = createSlice({
         state.loading = false;
       }
     );
+    builder.addMatcher(
+      productsApi.endpoints.getProducts.matchRejected,
+      (state) => {
+        state.loading = false;
+      }
+    );
   },
 });
 
